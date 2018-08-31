@@ -2,17 +2,23 @@
 <html>
 <head>
 	<title>Vue Training</title>
+
+	<!-- 
+	** Cheat Sheet **
+	
+	Shorthand
+		v-on: => @
+		v-bind: => :
+
+	 -->
 </head>
 <body>
 
 	<div id="app">
 		
-		<ul>
-			<li v-for="name in names" v-text="name"></li>
-		</ul>
+		<button v-bind:disabled="isDisabled">Hover over me</button>
 
-		<input type="text" v-model="newName">
-		<button @click="addName">Add Name</button>
+		<button v-on:click="disableToggle()">Toggle disabling of the other Button</button>
 
 	</div>
 	
@@ -23,16 +29,13 @@
 		new Vue ({
 			el: '#app',
 			data: {
-				newName: '',
-				names: ['Joe','Mary','Bob','Chicken']
+				isDisabled: false
 			},
 			methods: {
-				addName: function() {
-					this.names.push(this.newName);
-					this.newName = '';
+				disableToggle: function() {
+					this.isDisabled = !this.isDisabled;
 				}
 			}
-
 		})
 
 	</script>
