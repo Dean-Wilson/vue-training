@@ -7,9 +7,12 @@
 
 	<div id="app">
 		
-		<input type="text" id="input" v-model="message">
-		
-		<p>The value is {{message}}</p>
+		<ul>
+			<li v-for="name in names" v-text="name"></li>
+		</ul>
+
+		<input type="text">
+		<button>Add Name</button>
 
 	</div>
 	
@@ -17,15 +20,15 @@
 
 	<script>
 
-		var data = {
-			message: "Hello World"
-		};
-
 		new Vue ({
 			el: '#app',
 			data: {
-				
+				names: ['Joe','Mary','Bob','Chicken']
 			}
+
+			// mounted() {
+			// 	document.querySelector...
+			// }
 		})
 
 	</script>
