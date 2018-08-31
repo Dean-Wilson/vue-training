@@ -15,11 +15,32 @@
 <body>
 
 	<div id="app">
+			
+		<h1>All Tasks</h1>
 		
-		<button v-bind:disabled="isDisabled">Hover over me</button>
+		<ul>
+			<li v-for="task in tasks" v-text="task.description">
+			</li>
+		</ul>
 
-		<button v-on:click="disableToggle()">Toggle disabling of the other Button</button>
+		<h1>All Incomplete Tasks</h1>
+		<ul>
+				
+			<li v-for="task in incompletedTasks">
+				{{task.description}}
+				<button v-on:click="completeTask(task)">Done!</button>
+			</li>
+			
 
+		</ul>
+
+		<h1>Done</h1>
+		<ul>
+				
+			<li v-for="task in completedTasks" v-text="task.description">
+			</li>
+
+		</ul>
 	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -29,11 +50,29 @@
 		new Vue ({
 			el: '#app',
 			data: {
-				isDisabled: false
+				tasks: [
+					{description: 'Go to the shop', completed: true},
+					{description: 'Go to the store', completed: false},
+					{description: 'Go to the closet', completed: false},
+					{description: 'Do Shopping', completed: false},
+					{description: 'Clean Room', completed: true}
+				]
+			},
+			computed: {
+				incompletedTasks: function() {
+					return this.tasks.filter( function(task) {
+						return ! task.completed;
+					});
+				},
+				completedTasks: function() {
+					return this.tasks.filter( function(task) {
+						return task.completed;
+					});
+				}
 			},
 			methods: {
-				disableToggle: function() {
-					this.isDisabled = !this.isDisabled;
+				completeTask: function(task) {
+					task.completed = true;
 				}
 			}
 		})
