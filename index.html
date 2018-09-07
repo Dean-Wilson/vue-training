@@ -11,21 +11,26 @@
 		v-bind: => :
 
 	 -->
+
+	 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 </head>
 <body>
 
-	<div id="app">
-		<h1>All Tasks</h1>
-		<task-list></task-list>
-
-		<!-- <h1>Completed Tasks</h1>
-		<task v-for="task in tasks">
-			<span>{{task.description}}</span>
-		</task> -->
+	<div id="app" class="container">
+		<tabs>
+			<tab name="About Us" :selected="true">
+				<h1>Here is the content for the about us tab.</h1>
+			</tab>
+			<tab name="About out Culture">
+				<h1>Here is the content for the about our culture tab.</h1>
+			</tab>
+			<tab name="About our Vision">
+				<h1>Here is the content for the about our vision tab.</h1>
+			</tab>
+		</tabs>
 	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 	<script src="main.js"></script>
-
 </body>
 </html>

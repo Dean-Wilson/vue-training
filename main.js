@@ -1,35 +1,56 @@
-Vue.component('task-list', {
+Vue.component('tabs', {
+	template: `
+		<div>
+			<div class="tabs">
+			  <ul>
+			    <li v-for="tab in tabs" :class="{ 'is-active : tab.isActive'}">
+			    	<a href="#" @click="selectTab(tab)">{{tab.name}}</a>
+			    </li>
+			  </ul>
+			</div>
+			<div class="tabs-details">
+				<slot></slot>
+			</div>
+		</div>
+	`,
 
-	template: '<ul><task v-for="task in tasks">{{task.description}}</task></ul>',
-
-	data: function() {
-		return {
-			tasks: [
-				{description: 'Go to the shop', completed: true},
-				{description: 'Go to the store', completed: true},
-				{description: 'Go to the closet', completed: false},
-				{description: 'Do Shopping', completed: true},
-				{description: 'Clean Room', completed: true}
-			]
+	methods: {
+		selectTab(selectedTab) {
+			console.log('hello');
+			this.tabs.forEach(tab. function() {
+				tab.isActive = (tab.name == selectedTab.name);
+			});
 		}
+	},
+	data() {
+		return { tabs: [] };
+	},
+
+	created() {
+		this.tabs = this.$children
 	}
-
 });
 
-Vue.component('task', {
-
-	template: '<li><slot></slot></li>'
-
+Vue.component('tab', {
+	template: `
+		<div><slot></slot></div>
+	`,
+	props: {
+		name: {required: true},
+		selected: {default: false}
+	},
+	data() {
+		return {
+			isActive: false
+		}
+	},
+	mounted() {
+		this.isActive = this.isSelected;
+	}
 });
-
 
 new Vue({
-	el: "#app",
-	data: {
-	},
-	methods: {
-		makeItDone: function() {
-			return "hello";
-		}
-	}
+
+	el: "#app"
+
 });
