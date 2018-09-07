@@ -23,8 +23,14 @@
 <body>
 
 	<div id="app" class="container">
-		<coupon v-on:applied="onApplied"></coupon>
-		<h1 v-show="couponApplied">Coupon Applied Successfully</h1>
+		<modal>
+			<template slot="header">Heading</template>
+			Main Content for Modal
+			<!-- remove this slot and the default in the vue template will apply -->
+			<template slot="footer">
+				<button class="button is-success">Save changes</button>
+			</template>
+		</modal>
 	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>

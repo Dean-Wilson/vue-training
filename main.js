@@ -1,21 +1,31 @@
-window.Event = new Vue();
 
-Vue.component('coupon', {
+Vue.component('modal', {
 	template: `
-		<input placeholder="Enter your coupon code" @blur="onCouponApplied">
+		<div class="modal is-active">
+		  <div class="modal-background"></div>
+		  <div class="modal-card">
+		    <header class="modal-card-head">
+		      <p class="modal-card-title">
+		      	<slot name="header"></slot>
+		      </p>
+		      <button class="delete" aria-label="close"></button>
+		    </header>
+		    <section class="modal-card-body">
+		      <slot></slot>
+		    </section>
+		    <footer class="modal-card-foot">
+		    	<slot name="footer">
+		      		<button class="button is-success">Save changes</button>
+		      		<button class="button">Cancel</button>
+		    	</slot>
+		    </footer>
+		  </div>
+		</div>
 	`,
-	data() {
-		return {
-			
-		}
-	},
 	props: {
 	
 	},
 	methods: {
-		onCouponApplied: function() {
-			Event.$emit('applied');
-		}
 	},
 	computed: {
 	
@@ -26,21 +36,5 @@ Vue.component('coupon', {
 });
 
 new Vue({
-
 	el: "#app",
-
-	props: {
-		couponApplied: false
-	},
-
-	methods: {
-		onApplied: function() {
-			this.couponApplied = true;
-		}
-	},
-	created() {
-		Event.$on('applied', function(){
-			alert('handling it');
-		});
-	}
 });
