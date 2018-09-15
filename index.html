@@ -25,9 +25,22 @@
 	<div id="app" class="container">
 		<progress-view inline-template>
 			<div>
-				<h1>Your progress is {{ completionRate }}%</h1>
+				<h1>Get 10 in a row!</h1>
+				<h2>Your progress is {{ completionRate }} / 10</h2>
+				<div v-show="!win" >
+					<!-- <button @click="increaseCompletionRate()">More Progress</button> -->
 
-				<p><button @click="completionRate += 10">More Progress</button></p>
+					<form @submit.prevent="evaluateAnswer()">
+						<label for="maths">What is {{quantA}} +  {{quantB}}?</label>
+						<input id="maths" type="text" name="maths" v-model="answer">
+						<input type="submit" value="submit">
+					</form>
+				</div>
+				<div v-show="win">
+					<p>You are the winner!</p>
+					<button @click="startAgain()">Start Again</button>
+				</div>
+				<p v-show="failed">YOU FAILED. SAD!</p>
 			</div>
 		</progress-view>
 	</div>
