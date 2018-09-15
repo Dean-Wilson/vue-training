@@ -23,14 +23,13 @@
 <body>
 
 	<div id="app" class="container">
-		<modal>
-			<template slot="header">Heading</template>
-			Main Content for Modal
-			<!-- remove this slot and the default in the vue template will apply -->
-			<template slot="footer">
-				<button class="button is-success">Save changes</button>
-			</template>
-		</modal>
+		<progress-view inline-template>
+			<div>
+				<h1>Your progress is {{ completionRate }}%</h1>
+
+				<p><button @click="completionRate += 10">More Progress</button></p>
+			</div>
+		</progress-view>
 	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
